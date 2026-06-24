@@ -57,6 +57,176 @@
 
 /* ── Main Content ──────────────────────────────────── */
 main {
-  padding: 2rem 1.5rem;
   font-family: sans-serif;
+}
+
+.page-title {
+  padding: 2rem 1.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════
+   CAROUSEL / BANNER SLIDER
+═══════════════════════════════════════════════════════ */
+
+/* ── Outer wrapper ── */
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  /* Allow arrow buttons to be focused with keyboard */
+  outline: none;
+}
+
+/* ── Track ── */
+.carousel__track-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel__track {
+  display: flex;
+  list-style: none;
+  position: relative;
+  width: 100%;
+}
+
+/* ── Individual slide ── */
+.carousel__slide {
+  position: absolute;          /* all slides stack on top of each other */
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+  /* height is driven by the image inside */
+}
+
+/* The active slide is visible; it also creates the layout height */
+.carousel__slide--active {
+  position: relative;          /* takes up space in the flow → drives height */
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Banner image ── */
+.carousel__image {
+  display: block;
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── Caption overlay ── */
+.carousel__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+  color: #fff;
+}
+
+.carousel__caption-title {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.carousel__caption-text {
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  opacity: 0.9;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Prev / Next arrow buttons ── */
+.carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+  /* Keep the button vertically centred even when caption is present */
+  margin-top: -1.5rem; /* offset for caption gradient */
+}
+
+.carousel__btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.carousel__btn:focus-visible {
+  outline: 2px solid #1abc9c;
+  outline-offset: 3px;
+}
+
+.carousel__btn--prev { left: 1rem; }
+.carousel__btn--next { right: 1rem; }
+
+/* ── Dot indicators ── */
+.carousel__dots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.carousel__dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.carousel__dot--active {
+  background: #fff;
+  transform: scale(1.25);
+}
+
+.carousel__dot:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.carousel__dot:focus-visible {
+  outline: 2px solid #1abc9c;
+  outline-offset: 3px;
+}
+
+/* ── Responsive: tighten up on small screens ── */
+@media (max-width: 600px) {
+  .carousel__image {
+    height: 240px;
+  }
+
+  .carousel__btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1.5rem;
+  }
+
+  .carousel__caption {
+    padding: 1rem;
+  }
 }
