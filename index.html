@@ -19,7 +19,124 @@
     </header>
 
     <main>
-      <h1>Welcome to My Project</h1>
+      <!-- ── Home Banner Carousel ─────────────────────────── -->
+      <section class="carousel" aria-label="Home banner">
+
+        <!-- Slides -->
+        <div class="carousel__track-wrapper">
+          <ul class="carousel__track">
+
+            <!-- Slide 1 -->
+            <li class="carousel__slide carousel__slide--active">
+              <img
+                class="carousel__image"
+                src="https://placehold.co/1200x500/2c3e50/ecf0f1?text=Welcome+to+My+Project"
+                alt="Welcome to My Project"
+              />
+              <div class="carousel__caption">
+                <h2 class="carousel__caption-title">Welcome to My Project</h2>
+                <p class="carousel__caption-text">Discover what we have built for you.</p>
+              </div>
+            </li>
+
+            <!-- Slide 2 -->
+            <li class="carousel__slide">
+              <img
+                class="carousel__image"
+                src="https://placehold.co/1200x500/1abc9c/ffffff?text=Our+Services"
+                alt="Our Services"
+              />
+              <div class="carousel__caption">
+                <h2 class="carousel__caption-title">Our Services</h2>
+                <p class="carousel__caption-text">Explore the wide range of services we offer.</p>
+              </div>
+            </li>
+
+            <!-- Slide 3 -->
+            <li class="carousel__slide">
+              <img
+                class="carousel__image"
+                src="https://placehold.co/1200x500/e67e22/ffffff?text=Get+In+Touch"
+                alt="Get In Touch"
+              />
+              <div class="carousel__caption">
+                <h2 class="carousel__caption-title">Get In Touch</h2>
+                <p class="carousel__caption-text">We would love to hear from you.</p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <!-- Prev / Next Arrows -->
+        <button class="carousel__btn carousel__btn--prev" aria-label="Previous slide">&#8249;</button>
+        <button class="carousel__btn carousel__btn--next" aria-label="Next slide">&#8250;</button>
+
+        <!-- Dot Indicators -->
+        <div class="carousel__dots" role="tablist" aria-label="Slide indicators">
+          <button class="carousel__dot carousel__dot--active" role="tab" aria-label="Slide 1" data-index="0"></button>
+          <button class="carousel__dot" role="tab" aria-label="Slide 2" data-index="1"></button>
+          <button class="carousel__dot" role="tab" aria-label="Slide 3" data-index="2"></button>
+        </div>
+
+      </section>
+      <!-- ── End Carousel ─────────────────────────────────── -->
+
+      <h1 class="page-title">Welcome to My Project</h1>
     </main>
+
+    <script>
+      (() => {
+        const track   = document.querySelector('.carousel__track');
+        const slides  = [...document.querySelectorAll('.carousel__slide')];
+        const dots    = [...document.querySelectorAll('.carousel__dot')];
+        const btnPrev = document.querySelector('.carousel__btn--prev');
+        const btnNext = document.querySelector('.carousel__btn--next');
+
+        let current       = 0;
+        let autoplayTimer = null;
+        const AUTOPLAY_MS = 4000;
+
+        /* ── Go to a specific slide ── */
+        function goTo(index) {
+          slides[current].classList.remove('carousel__slide--active');
+          dots[current].classList.remove('carousel__dot--active');
+
+          current = (index + slides.length) % slides.length;
+
+          slides[current].classList.add('carousel__slide--active');
+          dots[current].classList.add('carousel__dot--active');
+        }
+
+        /* ── Arrow buttons ── */
+        btnPrev.addEventListener('click', () => { goTo(current - 1); resetAutoplay(); });
+        btnNext.addEventListener('click', () => { goTo(current + 1); resetAutoplay(); });
+
+        /* ── Dot buttons ── */
+        dots.forEach(dot => {
+          dot.addEventListener('click', () => {
+            goTo(Number(dot.dataset.index));
+            resetAutoplay();
+          });
+        });
+
+        /* ── Autoplay ── */
+        function startAutoplay() {
+          autoplayTimer = setInterval(() => goTo(current + 1), AUTOPLAY_MS);
+        }
+        function resetAutoplay() {
+          clearInterval(autoplayTimer);
+          startAutoplay();
+        }
+
+        /* ── Keyboard navigation ── */
+        document.querySelector('.carousel').addEventListener('keydown', e => {
+          if (e.key === 'ArrowLeft')  { goTo(current - 1); resetAutoplay(); }
+          if (e.key === 'ArrowRight') { goTo(current + 1); resetAutoplay(); }
+        });
+
+        startAutoplay();
+      })();
+    </script>
   </body>
 </html>
