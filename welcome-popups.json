@@ -1,0 +1,104 @@
+{
+  "_comment": "Welcome popup configuration. Each object in 'popups' defines one variant. Fields: id, theme (controls colour skin), badge (emoji/icon shown above title), title, subtitle, body, cta_label, cta_href, footer_note. 'enabled' lets you turn a variant off without deleting it. 'show_once' (global) – when true the popup is shown only on the very first visit per browser.",
+
+  "show_once": true,
+
+  "popups": [
+    {
+      "id": 1,
+      "enabled": true,
+      "theme": "teal",
+      "badge": "👋",
+      "title": "Hey there, welcome!",
+      "subtitle": "We're thrilled to have you here.",
+      "body": "My Project is the place where great ideas come to life. Take a look around — we think you'll love what we've built.",
+      "cta_label": "Start Exploring",
+      "cta_href": "#",
+      "footer_note": "No account needed · Always free to browse"
+    },
+    {
+      "id": 2,
+      "enabled": true,
+      "theme": "midnight",
+      "badge": "🚀",
+      "title": "Ready for lift-off?",
+      "subtitle": "Your journey starts right now.",
+      "body": "Whether you're here for inspiration or solutions, My Project has everything you need to reach your goals faster.",
+      "cta_label": "Let's Go",
+      "cta_href": "#",
+      "footer_note": "Trusted by 85 + happy clients worldwide"
+    },
+    {
+      "id": 3,
+      "enabled": true,
+      "theme": "sunrise",
+      "badge": "🌟",
+      "title": "Something awesome awaits!",
+      "subtitle": "First visit? You picked a great day.",
+      "body": "Explore our services, read our story, and discover how My Project can make a difference for you — starting today.",
+      "cta_label": "Show Me Around",
+      "cta_href": "#",
+      "footer_note": "120 + projects completed and counting"
+    },
+    {
+      "id": 4,
+      "enabled": true,
+      "theme": "forest",
+      "badge": "🌿",
+      "title": "Welcome to My Project",
+      "subtitle": "Fresh ideas · Real results.",
+      "body": "We blend creativity with purpose. From concept to completion, our team of 12 is here to help you every step of the way.",
+      "cta_label": "Meet the Team",
+      "cta_href": "about.html",
+      "footer_note": "6 years of experience · Always growing"
+    },
+    {
+      "id": 5,
+      "enabled": true,
+      "theme": "royal",
+      "badge": "💎",
+      "title": "You've found us!",
+      "subtitle": "Quality you can count on.",
+      "body": "My Project has been delivering exceptional work for over six years. Jump in and see why clients keep coming back.",
+      "cta_label": "See Our Work",
+      "cta_href": "#",
+      "footer_note": "Built with passion · Delivered with pride"
+    },
+    {
+      "id": 6,
+      "enabled": true,
+      "theme": "crimson",
+      "badge": "🔥",
+      "title": "Great things are happening!",
+      "subtitle": "And you're right on time.",
+      "body": "Don't miss out — explore our latest projects, services, and stories. There's always something new at My Project.",
+      "cta_label": "What's New",
+      "cta_href": "#",
+      "footer_note": "Updated regularly · Bookmark us!"
+    },
+    {
+      "id": 7,
+      "enabled": true,
+      "theme": "ocean",
+      "badge": "🌊",
+      "title": "Dive right in!",
+      "subtitle": "The water's fine, we promise.",
+      "body": "My Project is a sea of possibilities. Navigate our services, explore case studies, and find exactly what you need.",
+      "cta_label": "Explore Now",
+      "cta_href": "#",
+      "footer_note": "Friendly support · Always here to help"
+    },
+    {
+      "id": 8,
+      "enabled": true,
+      "theme": "golden",
+      "badge": "✨",
+      "title": "Welcome, valued visitor!",
+      "subtitle": "We've been expecting you.",
+      "body": "Every great partnership starts with a single visit. Let's make yours count — browse our work and get in touch today.",
+      "cta_label": "Get In Touch",
+      "cta_href": "#",
+      "footer_note": "Real people · Real conversations · Real results"
+    }
+  ]
+}
