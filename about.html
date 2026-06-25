@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us – My Project</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* ── About Page Specific Styles ─────────────────────── */
+
+      /* Hero banner */
+      .about-hero {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+
+      /* Page wrapper */
+      .about-content {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem 5rem;
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+      }
+
+      /* ── Section headings ── */
+      .about-content__heading {
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        color: #2c3e50;
+        margin-bottom: 1rem;
+      }
+
+      /* ── Intro ── */
+      .about-intro {
+        text-align: center;
+        max-width: 760px;
+        margin: 0 auto;
+      }
+
+      .about-intro p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: #555;
+      }
+
+      /* ── Story section (image + text side by side) ── */
+      .about-story {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .about-story__image img {
+        display: block;
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      }
+
+      .about-story__text {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .about-story__text p {
+        font-size: 0.97rem;
+        line-height: 1.8;
+        color: #555;
+      }
+
+      /* ── Team cards ── */
+      .about-team__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .team-card {
+        background: #f8f9fa;
+        border: 1px solid #e4e7eb;
+        border-radius: 8px;
+        padding: 2rem 1.5rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        transition: box-shadow 0.25s ease, transform 0.25s ease;
+      }
+
+      .team-card:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
+        transform: translateY(-3px);
+      }
+
+      .team-card__avatar {
+        display: block;
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 0.5rem;
+        border: 3px solid #1abc9c;
+      }
+
+      .team-card__name {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #2c3e50;
+      }
+
+      .team-card__role {
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #1abc9c;
+      }
+
+      .team-card__bio {
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: #666;
+      }
+
+      /* ── Values / three-column ── */
+      .about-values__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .value-card {
+        border-left: 4px solid #1abc9c;
+        padding: 1.25rem 1.5rem;
+        background: #f8f9fa;
+        border-radius: 0 8px 8px 0;
+      }
+
+      .value-card__title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+      }
+
+      .value-card__text {
+        font-size: 0.92rem;
+        line-height: 1.75;
+        color: #666;
+      }
+
+      /* ── CTA strip ── */
+      .about-cta {
+        background: #2c3e50;
+        border-radius: 8px;
+        padding: 3rem 2rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .about-cta__heading {
+        font-size: clamp(1.3rem, 3vw, 1.9rem);
+        color: #ecf0f1;
+      }
+
+      .about-cta__text {
+        font-size: 1rem;
+        color: #bdc3c7;
+        max-width: 560px;
+        line-height: 1.75;
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 900px) {
+        .about-story {
+          grid-template-columns: 1fr;
+        }
+
+        .about-story__image {
+          order: -1;
+        }
+
+        .about-team__grid,
+        .about-values__grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .about-hero {
+          height: 200px;
+        }
+
+        .about-team__grid,
+        .about-values__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- ── Site Header / Nav ──────────────────────────────── -->
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <ul class="nav__list">
+          <li class="nav__item"><a class="nav__link" href="index.html">Home</a></li>
+          <li class="nav__item"><a class="nav__link" href="about.html" aria-current="page">About</a></li>
+          <li class="nav__item"><a class="nav__link" href="#">Services</a></li>
+          <li class="nav__item"><a class="nav__link" href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+
+      <!-- ── Hero Banner ───────────────────────────────────── -->
+      <img
+        class="about-hero"
+        src="https://placehold.co/1200x320/2c3e50/ecf0f1?text=About+Us"
+        alt="About Us banner"
+      />
+
+      <div class="about-content">
+
+        <!-- ── Page Title ── -->
+        <h1 class="page-title" style="padding: 0;">About Us</h1>
+
+        <!-- ── Intro ──────────────────────────────────────── -->
+        <section class="about-intro" aria-labelledby="about-intro-heading">
+          <h2 class="about-content__heading" id="about-intro-heading">
+            Lorem Ipsum Dolor Sit Amet
+          </h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident.
+          </p>
+        </section>
+
+        <!-- ── Our Story ──────────────────────────────────── -->
+        <section class="about-story" aria-labelledby="about-story-heading">
+          <div class="about-story__image">
+            <img
+              src="https://placehold.co/560x400/1abc9c/ffffff?text=Our+Story"
+              alt="Our story illustration"
+            />
+          </div>
+          <div class="about-story__text">
+            <h2 class="about-content__heading" id="about-story-heading">Our Story</h2>
+            <p>
+              Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
+              turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit
+              amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi
+              vitae est.
+            </p>
+            <p>
+              Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
+              Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
+              fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus
+              lacus enim ac dui. Donec non enim in turpis pulvinar facilisis.
+            </p>
+            <p>
+              Nam liber tempor cum soluta nobis eligend optio congue nihil imperdiet doming id
+              quod mazim placerat facer possim assum. Ut wisi enim ad minim veniam, quis nostrud
+              exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
+        </section>
+
+        <!-- ── Our Values ─────────────────────────────────── -->
+        <section aria-labelledby="about-values-heading">
+          <h2 class="about-content__heading" id="about-values-heading">Our Values</h2>
+          <div class="about-values__grid">
+
+            <div class="value-card">
+              <h3 class="value-card__title">Integrity</h3>
+              <p class="value-card__text">
+                Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
+                consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan.
+              </p>
+            </div>
+
+            <div class="value-card">
+              <h3 class="value-card__title">Innovation</h3>
+              <p class="value-card__text">
+                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
+                lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet.
+              </p>
+            </div>
+
+            <div class="value-card">
+              <h3 class="value-card__title">Collaboration</h3>
+              <p class="value-card__text">
+                Nam liber tempor cum soluta nobis eligend optio congue nihil imperdiet doming id
+                quod mazim placerat facer possim assum. Consectetur adipiscing elit sed diam.
+              </p>
+            </div>
+
+            <div class="value-card">
+              <h3 class="value-card__title">Excellence</h3>
+              <p class="value-card__text">
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus.
+              </p>
+            </div>
+
+            <div class="value-card">
+              <h3 class="value-card__title">Transparency</h3>
+              <p class="value-card__text">
+                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed
+                quia consequuntur magni dolores eos qui ratione sequi nesciunt voluptatem.
+              </p>
+            </div>
+
+            <div class="value-card">
+              <h3 class="value-card__title">Sustainability</h3>
+              <p class="value-card__text">
+                Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil
+                molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ── Meet the Team ──────────────────────────────── -->
+        <section aria-labelledby="about-team-heading">
+          <h2 class="about-content__heading" id="about-team-heading">Meet the Team</h2>
+          <div class="about-team__grid">
+
+            <article class="team-card">
+              <img
+                class="team-card__avatar"
+                src="https://placehold.co/96x96/2c3e50/ecf0f1?text=JD"
+                alt="Portrait of Jane Doe"
+              />
+              <span class="team-card__name">Jane Doe</span>
+              <span class="team-card__role">Chief Executive Officer</span>
+              <p class="team-card__bio">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.
+              </p>
+            </article>
+
+            <article class="team-card">
+              <img
+                class="team-card__avatar"
+                src="https://placehold.co/96x96/1abc9c/ffffff?text=JS"
+                alt="Portrait of John Smith"
+              />
+              <span class="team-card__name">John Smith</span>
+              <span class="team-card__role">Head of Engineering</span>
+              <p class="team-card__bio">
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex ea commodo consequat. Duis aute irure dolor.
+              </p>
+            </article>
+
+            <article class="team-card">
+              <img
+                class="team-card__avatar"
+                src="https://placehold.co/96x96/e67e22/ffffff?text=AL"
+                alt="Portrait of Amy Lee"
+              />
+              <span class="team-card__name">Amy Lee</span>
+              <span class="team-card__role">Lead Designer</span>
+              <p class="team-card__bio">
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum. Pellentesque habitant.
+              </p>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ── Call to Action ─────────────────────────────── -->
+        <section class="about-cta" aria-labelledby="about-cta-heading">
+          <h2 class="about-cta__heading" id="about-cta-heading">
+            Ready to Work With Us?
+          </h2>
+          <p class="about-cta__text">
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat nulla pariatur. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+          <a class="home-content__btn" href="#">Get in Touch</a>
+        </section>
+
+      </div>
+      <!-- ── End about-content ─── -->
+
+    </main>
+
+  </body>
+</html>
