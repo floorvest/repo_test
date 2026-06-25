@@ -1,0 +1,32 @@
+version: "3.9"
+
+# ─────────────────────────────────────────────────────────────────
+# docker-compose.yml — Static site served by Nginx
+# Designed for seamless deployment on Coolify.
+# ─────────────────────────────────────────────────────────────────
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+
+    # Let Coolify's reverse proxy handle external routing.
+    # We expose the port internally only — no host port mapping.
+    expose:
+      - "80"
+
+    environment:
+      # Nginx reads NGINX_HOST / NGINX_PORT automatically
+      NGINX_HOST: "localhost"
+      NGINX_PORT: "80"
+
+    restart: unless-stopped
+
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:80/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
