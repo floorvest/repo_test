@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Showcase – My Project</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* ── Showcase Page Specific Styles ─────────────────── */
+
+      /* Hero banner */
+      .showcase-hero {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+
+      /* Page wrapper */
+      .showcase-content {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem 5rem;
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+      }
+
+      /* ── Section headings ── */
+      .showcase-content__heading {
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        color: #2c3e50;
+        margin-bottom: 1rem;
+      }
+
+      /* ── Intro ── */
+      .showcase-intro {
+        text-align: center;
+        max-width: 760px;
+        margin: 0 auto;
+      }
+
+      .showcase-intro p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: #555;
+      }
+
+      /* ── Filter buttons ── */
+      .showcase-filters {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+        margin: 1.5rem 0;
+      }
+
+      .filter-btn {
+        padding: 0.6rem 1.2rem;
+        background-color: #f8f9fa;
+        color: #2c3e50;
+        border: 2px solid #e4e7eb;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+
+      .filter-btn:hover {
+        border-color: #1abc9c;
+        color: #1abc9c;
+      }
+
+      .filter-btn--active {
+        background-color: #1abc9c;
+        color: #fff;
+        border-color: #1abc9c;
+      }
+
+      /* ── Projects grid ── */
+      .showcase-projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+      }
+
+      /* ── Project card ── */
+      .project-card {
+        background: #fff;
+        border: 1px solid #e4e7eb;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .project-card:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        transform: translateY(-4px);
+      }
+
+      .project-card__image {
+        display: block;
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .project-card__content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        flex: 1;
+      }
+
+      .project-card__tag {
+        display: inline-block;
+        width: fit-content;
+        padding: 0.35rem 0.8rem;
+        background-color: #e8f8f5;
+        color: #1abc9c;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-radius: 12px;
+      }
+
+      .project-card__title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #2c3e50;
+        line-height: 1.4;
+      }
+
+      .project-card__description {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #666;
+        flex: 1;
+      }
+
+      .project-card__meta {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.85rem;
+        color: #999;
+        margin-top: 0.5rem;
+      }
+
+      .project-card__meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
+
+      .project-card__links {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+
+      .project-card__link {
+        flex: 1;
+        padding: 0.6rem 1rem;
+        background-color: #1abc9c;
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 4px;
+        transition: background-color 0.2s ease;
+        border: none;
+        cursor: pointer;
+      }
+
+      .project-card__link:hover {
+        background-color: #17a589;
+      }
+
+      .project-card__link--secondary {
+        background-color: #f8f9fa;
+        color: #2c3e50;
+        border: 1px solid #e4e7eb;
+      }
+
+      .project-card__link--secondary:hover {
+        background-color: #ecf0f1;
+      }
+
+      /* ── Featured project (full-width) ── */
+      .featured-project {
+        background: linear-gradient(135deg, #2c3e50 0%, #3d5166 100%);
+        border-radius: 8px;
+        padding: 2.5rem;
+        color: #fff;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .featured-project__image {
+        display: block;
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      }
+
+      .featured-project__content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .featured-project__tag {
+        display: inline-block;
+        width: fit-content;
+        padding: 0.4rem 1rem;
+        background-color: rgba(26, 188, 156, 0.3);
+        color: #1abc9c;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-radius: 12px;
+      }
+
+      .featured-project__title {
+        font-size: clamp(1.5rem, 4vw, 2.2rem);
+        font-weight: 800;
+        line-height: 1.2;
+      }
+
+      .featured-project__description {
+        font-size: 1rem;
+        line-height: 1.8;
+        opacity: 0.95;
+      }
+
+      .featured-project__details {
+        display: flex;
+        gap: 2rem;
+        margin: 1rem 0;
+        font-size: 0.95rem;
+      }
+
+      .featured-project__detail {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+
+      .featured-project__detail-label {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        opacity: 0.8;
+      }
+
+      .featured-project__detail-value {
+        font-weight: 700;
+        font-size: 1.05rem;
+      }
+
+      .featured-project__link {
+        display: inline-block;
+        width: fit-content;
+        padding: 0.8rem 2rem;
+        background-color: #1abc9c;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 4px;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+        border: none;
+        cursor: pointer;
+        margin-top: 0.5rem;
+      }
+
+      .featured-project__link:hover {
+        background-color: #17a589;
+        transform: translateY(-2px);
+      }
+
+      /* ── Statistics section ── */
+      .showcase-stats {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 2.5rem 2rem;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .showcase-stat {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+
+      .showcase-stat__number {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: 800;
+        color: #1abc9c;
+      }
+
+      .showcase-stat__label {
+        font-size: 0.9rem;
+        color: #666;
+        letter-spacing: 0.04em;
+      }
+
+      /* ── Empty state ── */
+      .showcase-empty {
+        text-align: center;
+        padding: 3rem 1.5rem;
+        color: #999;
+      }
+
+      .showcase-empty__icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .showcase-empty__message {
+        font-size: 1.05rem;
+        margin-bottom: 0.5rem;
+        color: #666;
+      }
+
+      /* ── CTA section ── */
+      .showcase-cta {
+        background: #2c3e50;
+        border-radius: 8px;
+        padding: 3rem 2rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .showcase-cta__heading {
+        font-size: clamp(1.3rem, 3vw, 1.9rem);
+        color: #ecf0f1;
+      }
+
+      .showcase-cta__text {
+        font-size: 1rem;
+        color: #bdc3c7;
+        max-width: 560px;
+        line-height: 1.75;
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 900px) {
+        .featured-project {
+          grid-template-columns: 1fr;
+        }
+
+        .featured-project__image {
+          order: -1;
+        }
+
+        .showcase-stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .showcase-hero {
+          height: 200px;
+        }
+
+        .featured-project {
+          padding: 1.5rem;
+        }
+
+        .showcase-projects {
+          grid-template-columns: 1fr;
+        }
+
+        .showcase-stats {
+          grid-template-columns: 1fr;
+        }
+
+        .showcase-filters {
+          flex-direction: column;
+        }
+
+        .filter-btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- ── Site Header / Nav ──────────────────────────────── -->
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <ul class="nav__list">
+          <li class="nav__item"><a class="nav__link" href="index.html">Home</a></li>
+          <li class="nav__item"><a class="nav__link" href="about.html">About</a></li>
+          <li class="nav__item"><a class="nav__link" href="showcase.html" aria-current="page">Showcase</a></li>
+          <li class="nav__item"><a class="nav__link" href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+
+      <!-- ── Hero Banner ───────────────────────────────────── -->
+      <img
+        class="showcase-hero"
+        src="https://placehold.co/1200x320/1abc9c/ffffff?text=Project+Showcase"
+        alt="Project Showcase banner"
+      />
+
+      <div class="showcase-content">
+
+        <!-- ── Page Title ── -->
+        <h1 class="page-title" style="padding: 0;">Project Showcase</h1>
+
+        <!-- ── Intro ──────────────────────────────────────── -->
+        <section class="showcase-intro" aria-labelledby="showcase-intro-heading">
+          <h2 class="showcase-content__heading" id="showcase-intro-heading">
+            Explore Our Template Projects
+          </h2>
+          <p>
+            Discover a curated collection of our finest template projects. Each project showcases
+            innovative design, cutting-edge technology, and exceptional execution. Browse through
+            our portfolio to see what we can build for you.
+          </p>
+        </section>
+
+        <!-- ── Featured Project ──────────────────────────── -->
+        <section class="featured-project" aria-labelledby="featured-title">
+          <img
+            class="featured-project__image"
+            src="https://placehold.co/500x350/2c3e50/ecf0f1?text=Featured+Template"
+            alt="Featured template project"
+          />
+          <div class="featured-project__content">
+            <span class="featured-project__tag">Featured</span>
+            <h2 class="featured-project__title" id="featured-title">
+              Modern E-Commerce Platform
+            </h2>
+            <p class="featured-project__description">
+              A fully responsive e-commerce template built with modern web technologies. Features
+              include product filtering, shopping cart, secure checkout, and inventory management.
+              Perfect for online retailers looking to establish or enhance their digital presence.
+            </p>
+            <div class="featured-project__details">
+              <div class="featured-project__detail">
+                <span class="featured-project__detail-label">Technology</span>
+                <span class="featured-project__detail-value">React + Node.js</span>
+              </div>
+              <div class="featured-project__detail">
+                <span class="featured-project__detail-label">Launch Date</span>
+                <span class="featured-project__detail-value">2024</span>
+              </div>
+            </div>
+            <a class="featured-project__link" href="#ecommerce-details">View Details →</a>
+          </div>
+        </section>
+
+        <!-- ── Filter Buttons ────────────────────────────── -->
+        <section aria-labelledby="filter-heading">
+          <h2 style="font-size: 1rem; color: #2c3e50; margin-bottom: 1rem; text-align: center;" id="filter-heading">
+            Filter by Category
+          </h2>
+          <div class="showcase-filters">
+            <button class="filter-btn filter-btn--active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="web">Web Apps</button>
+            <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+            <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
+            <button class="filter-btn" data-filter="saas">SaaS</button>
+            <button class="filter-btn" data-filter="cms">Content Systems</button>
+          </div>
+        </section>
+
+        <!-- ── Projects Grid ────────────────────────────── -->
+        <section aria-labelledby="projects-heading">
+          <h2 class="showcase-content__heading" id="projects-heading">
+            Available Templates
+          </h2>
+          <div class="showcase-projects">
+
+            <!-- Project 1: E-Commerce Store -->
+            <article class="project-card" data-category="ecommerce">
+              <img
+                class="project-card__image"
+                src="https://placehold.co/320x200/1abc9c/ffffff?text=E-Commerce+Store"
+                alt="E-Commerce Store template"
+              />
+              <div class="project-card__content">
+                <span class="project-card__tag">E-Commerce</span>
+                <h3 class="project-card__title">E-Commerce Store</h3>
+                <p class="project-card__description">
+                  Complete online store template with product management, shopping cart, and
+                  secure payment integration. Fully customizable and mobile-responsive.
+                </p>
+                <div class="project-card__meta">
+                  <span class="project-card__meta-item">
+                    <span>★</span> React + Node.js
+                  </span>
+                  <span class="project-card__meta-item">
+                    <span>📅</span> 2024
+                  </span>
+                </div>
+                <div class="project-card__links">
+                  <a class="project-card__link" href="#">Live Demo</a>
+                  <a class="project-card__link project-card__link--secondary" href="#">Code</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 2: Blog Platform -->
+            <article class="project-card" data-category="cms">
+              <img
+                class="project-card__image"
+                src="https://placehold.co/320x200/e67e22/ffffff?text=Blog+Platform"
+                alt="Blog Platform template"
+              />
+              <div class="project-card__content">
+                <span class="project-card__tag">Content System</span>
+                <h3 class="project-card__title">Modern Blog Platform</h3>
+                <p class="project-card__description">
+                  Feature-rich blogging platform with categories, tags, comments, and social
+                  sharing. Perfect for content creators and publishers.
+                </p>
+                <div class="project-card__meta">
+                  <span class="project-card__meta-item">
+                    <span>★</span> Next.js
+                  </span>
+                  <span class="project-card__meta-item">
+                    <span>📅</span> 2024
+                  </span>
+                </div>
+                <div class="project-card__links">
+                  <a class="project-card__link" href="#">Live Demo</a>
+                  <a class="project-card__link project-card__link--secondary" href="#">Code</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 3: Project Management -->
+            <article class="project-card" data-category="saas">
+              <img
+                class="project-card__image"
+                src="https://placehold.co/320x200/3498db/ffffff?text=Project+Manager"
+                alt="Project Management template"
+              />
+              <div class="project-card__content">
+                <span class="project-card__tag">SaaS</span>
+                <h3 class="project-card__title">Project Management Tool</h3>
+                <p class="project-card__description">
+                  Collaborative project management solution with task tracking, team
+                  collaboration, and real-time updates. Perfect for agile teams.
+                </p>
+                <div class="project-card__meta">
+                  <span class="project-card__meta-item">
+                    <span>★</span> Vue.js + Python
+                  </span>
+                  <span class="project-card__meta-item">
+                    <span>📅</span> 2024
+                  </span>
+                </div>
+                <div class="project-card__links">
+                  <a class="project-card__link" href="#">Live Demo</a>
+                  <a class="project-card__link project-card__link--secondary" href="#">Code</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 4: Social Network -->
+            <article class="project-card" data-category="web">
+              <img
+                class="project-card__image"
+                src="https://placehold.co/320x200/9b59b6/ffffff?text=Social+Network"
+                alt="Social Network template"
+              />
+              <div class="project-card__content">
+                <span class="project-card__tag">Web App</span>
+                <h3 class="project-card__title">Social Network Platform</h3>
+                <p class="project-card__description">
+                  Connect users through a social platform with messaging, notifications, and
+                  content sharing. Includes real-time features and user profiles.
+                </p>
+                <div class="project-card__meta">
+                  <span class="project-card__meta-item">
+                    <span>★</span> React + Firebase
+                  </span>
+                  <span class="project-card__meta-item">
+                    <span>📅</span> 2023
+                  </span>
+                </div>
+                <div class="project-card__links">
+                  <a class="project-card__link" href="#">Live Demo</a>
+                  <a class="project-card__link project-card__link--secondary" href="#">Code</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 5: Fitness Tracking -->
+            <article class="project-card" data-category="mobile">
+              <img
+                class="project-card__image"
+                src="https://placehold.co/320x200/e74c3c/ffffff?text=Fitness+App"
+                alt="Fitness Tracking template"
+              />
+              <div class="project-card__content">
+                <span class="project-card__tag">Mobile App</span>
+                <h3 class="project-card__title">Fitness Tracking App</h3>
+                <p class="project-card__description">
+                  Mobile fitness app for tracking workouts, nutrition, and health goals. Features
+                  progress analytics and social motivation features.
+                </p>
+                <div class="project-card__meta">
+                  <span class="project-card__meta-item">
+                    <span>★</span> React Native
+                  </span>
+                  <span class="project-card__meta-item">
+                    <span>📅</span> 2024
+                  </span>
+                </div>
+                <div class="project-card__links">
+                  <a class="project-card__link" href="#">Live Demo</a>
+                  <a class="project-card__link project-card__link--secondary" href="#">Code</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 6: Learning Platform -->
+            <article class="project-card" data-category="saas">
+              <img
+                class="project-card__image"
+                src="https://placehold.co/320x200/16a085/ffffff?text=Learning+Platform"
+                alt="Learning Platform template"
+              />
+              <div class="project-card__content">
+                <span class="project-card__tag">SaaS</span>
+                <h3 class="project-card__title">Online Learning Platform</h3>
+                <p class="project-card__description">
+                  Educational platform with course management, video hosting, quizzes, and
+                  student progress tracking. Ideal for educators and institutions.
+                </p>
+                <div class="project-card__meta">
+                  <span class="project-card__meta-item">
+                    <span>★</span> Django + React
+                  </span>
+                  <span class="project-card__meta-item">
+                    <span>📅</span> 2023
+                  </span>
+                </div>
+                <div class="project-card__links">
+                  <a class="project-card__link" href="#">Live Demo</a>
+                  <a class="project-card__link project-card__link--secondary" href="#">Code</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 7: Chat Application -->
+            <article class="project-card" data-category="web">
+              <img
+                class="project-card__image"
+                src="https://placehold.co/320x200/2980b9/ffffff?text=Chat+App"
+                alt="Chat Application template"
+              />
+              <div class="project-card__content">
+                <span class="project-card__tag">Web App</span>
+                <h3 class="project-card__title">Real-Time Chat Application</h3>
+                <p class="project-card__description">
+                  Instant messaging application with real-time notifications, file sharing, and
+                  group conversations. Built with WebSocket technology.
+                </p>
+                <div class="project-card__meta">
+                  <span class="project-card__meta-item">
+                    <span>★</span> Node.js + Socket.io
+                  </span>
+                  <span class="project-card__meta-item">
+                    <span>📅</span> 2024
+                  </span>
+                </div>
+                <div class="project-card__links">
+                  <a class="project-card__link" href="#">Live Demo</a>
+                  <a class="project-card__link project-card__link--secondary" href="#">Code</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 8: Analytics Dashboard -->
+            <article class="project-card" data-category="saas">
+              <img
+                class="project-card__image"
+                src="https://placehold.co/320x200/f39c12/ffffff?text=Analytics+Dashboard"
+                alt="Analytics Dashboard template"
+              />
+              <div class="project-card__content">
+                <span class="project-card__tag">SaaS</span>
+                <h3 class="project-card__title">Analytics Dashboard</h3>
+                <p class="project-card__description">
+                  Comprehensive analytics dashboard with data visualization, real-time metrics,
+                  and customizable reports. Perfect for business intelligence.
+                </p>
+                <div class="project-card__meta">
+                  <span class="project-card__meta-item">
+                    <span>★</span> React + D3.js
+                  </span>
+                  <span class="project-card__meta-item">
+                    <span>📅</span> 2024
+                  </span>
+                </div>
+                <div class="project-card__links">
+                  <a class="project-card__link" href="#">Live Demo</a>
+                  <a class="project-card__link project-card__link--secondary" href="#">Code</a>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ── Statistics ────────────────────────────────── -->
+        <section aria-labelledby="stats-heading">
+          <h2 class="showcase-content__heading" id="stats-heading" style="text-align: center;">
+            By The Numbers
+          </h2>
+          <div class="showcase-stats">
+            <div class="showcase-stat">
+              <span class="showcase-stat__number">50+</span>
+              <span class="showcase-stat__label">Projects Built</span>
+            </div>
+            <div class="showcase-stat">
+              <span class="showcase-stat__number">8</span>
+              <span class="showcase-stat__label">Templates Available</span>
+            </div>
+            <div class="showcase-stat">
+              <span class="showcase-stat__number">15+</span>
+              <span class="showcase-stat__label">Technologies Used</span>
+            </div>
+            <div class="showcase-stat">
+              <span class="showcase-stat__number">98%</span>
+              <span class="showcase-stat__label">Client Satisfaction</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── Call to Action ─────────────────────────────── -->
+        <section class="showcase-cta" aria-labelledby="showcase-cta-heading">
+          <h2 class="showcase-cta__heading" id="showcase-cta-heading">
+            Ready to Build Your Project?
+          </h2>
+          <p class="showcase-cta__text">
+            Choose from our library of professional templates or let us create a custom solution
+            tailored to your specific needs. We're here to help bring your vision to life.
+          </p>
+          <a class="home-content__btn" href="#">Start Your Project</a>
+        </section>
+
+      </div>
+      <!-- ── End showcase-content ─── -->
+
+    </main>
+
+    <!-- ── Filter functionality ────────────────────────────── -->
+    <script>
+      (() => {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const filter = btn.dataset.filter;
+
+            // Update active button
+            filterBtns.forEach(b => b.classList.remove('filter-btn--active'));
+            btn.classList.add('filter-btn--active');
+
+            // Filter projects
+            projectCards.forEach(card => {
+              if (filter === 'all' || card.dataset.category === filter) {
+                card.style.display = 'flex';
+                // Trigger animation
+                card.offsetHeight;
+              } else {
+                card.style.display = 'none';
+              }
+            });
+          });
+        });
+      })();
+    </script>
+
+  </body>
+</html>
